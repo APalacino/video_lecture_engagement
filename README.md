@@ -13,12 +13,184 @@ The purpose of this project is to choose the best model to predict if a video wi
 
 ### Technologies
 * Python
-* PostGres, MySql
 * Pandas, jupyter
 * Scikit-learn 
+* Matplotlib, seaborn
 
 ## Project Description
-(Provide more detailed overview of the project.  Talk a bit about your data sources and what questions and hypothesis you are exploring. What specific data analysis/visualization and modelling work are you using to solve the problem? What blockers and challenges are you facing?  Feel free to number or bullet point things here)
+Use the Video Lecture Engagement to predict if a video will be engaging to a user. This data set is the result of a previously processed data from an open source. The objective is to choose the best model from at least three optimized machine learning algorithms, they will be optimized for Fbeta prioritizing precision over recall.
+
+From the repository of the data set the feature descriptions are the following:
+
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-fymr">Variable Type</th>
+    <th class="tg-fymr">Name</th>
+    <th class="tg-fymr">Quality Vertical </th>
+    <th class="tg-fymr">Description</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-8bgf" colspan="4">Metadata-based&nbsp;&nbsp;&nbsp;Features</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">cat.</td>
+    <td class="tg-0pky">Language</td>
+    <td class="tg-0pky">-</td>
+    <td class="tg-0pky">Language of instruction of the video lecture</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">cat.</td>
+    <td class="tg-0pky">Domain</td>
+    <td class="tg-0pky">-</td>
+    <td class="tg-0pky">Subject area (STEM or Miscellaneous)</td>
+  </tr>
+  <tr>
+    <td class="tg-8bgf" colspan="4">Content-based&nbsp;&nbsp;&nbsp;Features</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Word Count</td>
+    <td class="tg-0pky">Topic Coverage </td>
+    <td class="tg-0pky">Word Count of Transcript</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Title Word Count</td>
+    <td class="tg-0pky">Topic Coverag </td>
+    <td class="tg-0pky">Word Count of Title</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Document Entropy</td>
+    <td class="tg-0pky">Topic Coverage </td>
+    <td class="tg-0pky">Document Entropy of Transcript</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Easiness (FK Easiness)</td>
+    <td class="tg-0pky">Understandability  </td>
+    <td class="tg-0pky">FK Easiness based on FK Easiness </td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Stop-word Presence Rate</td>
+    <td class="tg-0pky">Understandability</td>
+    <td class="tg-0pky">Stopword Presence Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Stop-word Coverage Rate</td>
+    <td class="tg-0pky">Understandability </td>
+    <td class="tg-0pky">Stopword Coverage Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Preposition Rate</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Preposition Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Auxiliary Rate</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Auxiliary Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">To Be Rate</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">To-Be Verb Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Conjunction Rate</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Conjunction Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Normalisation Rate</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Normalisation Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Pronoun Rate</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Pronoun Rate of Transcript text</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Published Date</td>
+    <td class="tg-0pky">Freshness </td>
+    <td class="tg-0pky">Duration between 01/01/1970 and the lecture published date (in days)</td>
+  </tr>
+  <tr>
+    <td class="tg-8bgf" colspan="4">Wikipedia-based&nbsp;&nbsp;&nbsp;Features</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">cat.</td>
+    <td class="tg-0pky">Top-5 Authoritative Topic URLs</td>
+    <td class="tg-0pky">Authority </td>
+    <td class="tg-0pky">5 Most Authoritative Topic URLs based on PageRank Score. 5 features in&nbsp;&nbsp;&nbsp;this group</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Top-5 PageRank Scores </td>
+    <td class="tg-0pky">Authority </td>
+    <td class="tg-0pky">PageRank Scores of the top-5 most authoritative topics</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">cat.</td>
+    <td class="tg-0pky">Top-5 Covered Topic URLs</td>
+    <td class="tg-0pky">Topic Coverage </td>
+    <td class="tg-0pky">5 Most Covered Topic URLs based on Cosine Similarity Score. 5 features in&nbsp;&nbsp;&nbsp;this group</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Top-5 Cosine Similarities</td>
+    <td class="tg-0pky">Topic Coverage   </td>
+    <td class="tg-0pky">Cosine Similarity Scores of the top-5 most covered topics</td>
+  </tr>
+  <tr>
+    <td class="tg-8bgf" colspan="4">Video-based Features</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Lecture Duration</td>
+    <td class="tg-0pky">Topic Coverage </td>
+    <td class="tg-0pky">Duration of the video (in seconds)</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">cat.</td>
+    <td class="tg-0pky">Is Chunked</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">If the lecture consists of multiple videos</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">cat.</td>
+    <td class="tg-0pky">Lecture Type</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Type of lecture (lecture, tutorial, invited talk etc.)</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Speaker speed</td>
+    <td class="tg-0pky">Presentation </td>
+    <td class="tg-0pky">Speaker speed (words per minute)</td>
+  </tr>
+  <tr>
+    <td class="tg-0pky">con.</td>
+    <td class="tg-0pky">Silence Period Rate (SPR)</td>
+    <td class="tg-0pky">Presentation</td>
+    <td class="tg-0pky">Fraction of silence in the lecture video</td>
+  </tr>
+</tbody>
+</table>
+
 
 ## Needs of this project
 
