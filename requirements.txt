@@ -62,12 +62,14 @@ PyWavelets==1.8.0
 PyYAML==6.0.2
 pyzmq==26.3.0
 requests==2.32.3
+scikit-learn==1.6.1
 scipy==1.15.2
 seaborn==0.13.2
 setuptools==78.1.0
 six==1.17.0
 stack-data==0.6.3
 statsmodels==0.14.4
+threadpoolctl==3.6.0
 tokenize_rt==6.1.0
 tornado==6.4.2
 tqdm==4.67.1
